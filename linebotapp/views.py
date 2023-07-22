@@ -34,10 +34,9 @@ def handle_text_message(event):
     elif event.message.text.startswith('/openai '):
         # 定义prev_text变量，用于保存上一次对话的文本内容
         prev_text = ""
-        question = event.message.text[8:]
+        question = "prompt:你是Macy,是這裡的藥師(Pharmacist)，你能提供藥物諮詢。" + event.message.text[8:]
         # 通过ask方法向ChatGPT发送问题并获取回答
-        for data in chatbot.ask(question):
-            # 从回答数据中提取ChatGPT的回答，并去除前面已经输出过的文本部分
+        for data in chatbot.ask(question):            # 从回答数据中提取ChatGPT的回答，并去除前面已经输出过的文本部分
             message = data["message"][len(prev_text) :]
             # 输出ChatGPT的回答
             print(message, end="", flush=True)
@@ -47,7 +46,7 @@ def handle_text_message(event):
         print()
         message = TextSendMessage(text=prev_text)
     else:
-        message = TextSendMessage(text='I did not understand your message.')
+        message = TextSendMessage(text='I did not understand your message.\n You can type /run <command> to run a command on the server.\n You can type /openai <question> to ask a question to the OpenAI GPT-3 API.')
     
     if event.message.text == 'test':
         message = TextSendMessage(text='OK')
