@@ -10,7 +10,6 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageMess
 
 line_bot_api = LineBotApi('yIKuZJJWIk8yH9Bwwe2/U2X6h7FOBkbBBaA/IxZ1eVml+k7U8MVvNNUuS4xMHctvzkXdAIxeqQr8cAoWt7Kaf0XD3nBLBcVCsywAac1GcCewLA98XkVGbbpwsVcm5yzX2p6eVjxsKUPjftINBc5JvQdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('cacecd1552c1f6e5eb64474596f4fec5')
-message01 = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n']
 # 导入revChatGPT.V1中的Chatbot类
 from revChatGPT.V1 import Chatbot
 # 创建Chatbot实例并传入config参数，包括登录OpenAI的账户信息
@@ -37,8 +36,6 @@ def handle_text_message(event):
         prev_text = ""
         question = event.message.text[8:]
         # 通过ask方法向ChatGPT发送问题并获取回答
-        # 通过ask方法向ChatGPT发送问题并获取回答
-        i=0
         for data in chatbot.ask(question):
             # 从回答数据中提取ChatGPT的回答，并去除前面已经输出过的文本部分
             message = data["message"][len(prev_text) :]
